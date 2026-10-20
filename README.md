@@ -2,7 +2,7 @@
 
 # 雨课堂（长江雨课堂）视频自动连播助手
 
-📦 **[下载最新版安装包](https://github.com/1743084649/yuketang-video-autoplay/releases/latest)**（当前版本 `1.0.7`）
+📦 **[下载最新版安装包](https://github.com/Alan-88454/yuketang-video-autoplay/releases/latest)**（当前版本 `1.0.7`）
 
 一个本地加载的 Edge 扩展。装上之后，它会在雨课堂课程页上：
 

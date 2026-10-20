@@ -2,7 +2,7 @@
 
 # Yuketang (Changjiang Yuketang) Video Auto-Play Extension
 
-📦 **[Download the latest release](https://github.com/1743084649/yuketang-video-autoplay/releases/latest)** (current version `1.0.7`)
+📦 **[Download the latest release](https://github.com/Alan-88454/yuketang-video-autoplay/releases/latest)** (current version `1.0.7`)
 
 A locally loaded Edge extension. Once installed, on a Yuketang course page it will:
 
