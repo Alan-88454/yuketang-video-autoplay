@@ -21,6 +21,7 @@ if (Test-Path -LiteralPath $zip) { Remove-Item -LiteralPath $zip -Force }
 $files = @(
   @{ src = Join-Path $proj 'manifest.json';        entry = "$name/manifest.json" },
   @{ src = Join-Path $proj 'README.md';            entry = "$name/README.md" },
+  @{ src = Join-Path $proj 'README.en.md';         entry = "$name/README.en.md" },
   @{ src = Join-Path $proj 'src\background.js';    entry = "$name/src/background.js" },
   @{ src = Join-Path $proj 'src\content.js';       entry = "$name/src/content.js" },
   @{ src = Join-Path $proj 'src\main-world.js';    entry = "$name/src/main-world.js" }

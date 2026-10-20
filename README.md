@@ -1,4 +1,8 @@
+**简体中文** | [English](README.en.md)
+
 # 雨课堂（长江雨课堂）视频自动连播助手
+
+📦 **[下载最新版安装包](https://github.com/1743084649/yuketang-video-autoplay/releases/latest)**（当前版本 `1.0.7`）
 
 一个本地加载的 Edge 扩展。装上之后，它会在雨课堂课程页上：
 
@@ -197,7 +201,8 @@ src/main-world.js      document_start 注入：绕过切屏暂停检测 + 锁住
 src/content.js         页面识别 / 章节分类 / 播放控制 / 完成判定 / 弹窗处理 / 面板 / 自检
 src/background.js      Service Worker：课程页与视频页的信号转发、标签页收尾、标签页级静音
 build.ps1              把上面这些文件打成一个可分发的 zip
-README.md              本文件
+README.md              中文说明（本文件）
+README.en.md           英文说明
 ```
 
 打包分发包：
