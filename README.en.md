@@ -228,6 +228,8 @@ README.md              Chinese documentation
 README.en.md           English documentation (this file)
 CHANGELOG.md           version history (Chinese + English)
 LICENSE                MIT license
+assets/social-preview.png   social preview image (1280×640)
+assets/social-preview.html  design source; open it in a browser to re-render
 ```
 
 Building the distributable:

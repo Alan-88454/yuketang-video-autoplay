@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>social preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 1280px;
+    height: 640px;
+    overflow: hidden;
+  }
+
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+    background: #0a1020;
+    color: #f8fafc;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    position: relative;
+  }
+
+  /* 背景：两团柔光 + 细网格 */
+  .glow-a {
+    position: absolute; inset: 0;
+    background: radial-gradient(760px 520px at 8% -12%, rgba(59,130,246,.42), transparent 62%);
+  }
+  .glow-b {
+    position: absolute; inset: 0;
+    background: radial-gradient(680px 460px at 100% 112%, rgba(34,211,238,.22), transparent 60%);
+  }
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(120% 100% at 50% 50%, #000 45%, transparent 100%);
+    -webkit-mask-image: radial-gradient(120% 100% at 50% 50%, #000 45%, transparent 100%);
+  }
+
+  .stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 52px;
+    height: 100%;
+    padding: 64px 72px;
+  }
+
+  .left { width: 690px; }
+
+  .brand { display: flex; align-items: center; gap: 14px; margin-bottom: 34px; }
+  .logo {
+    width: 46px; height: 46px; border-radius: 12px;
+    background: linear-gradient(150deg, #3b82f6, #22d3ee);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 23px; font-weight: 700; color: #04121f;
+    box-shadow: 0 10px 26px rgba(59,130,246,.42);
+  }
+  .brand-text {
+    font-size: 19px; font-weight: 600; letter-spacing: .04em; color: #cbd5e1;
+  }
+
+  h1 {
+    font-size: 74px;
+    line-height: 1.14;
+    font-weight: 800;
+    letter-spacing: -.01em;
+  }
+  h1 .line2 {
+    background: linear-gradient(96deg, #60a5fa 8%, #22d3ee 92%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .sub {
+    margin-top: 22px;
+    font-size: 27px;
+    line-height: 1.5;
+    color: #94a3b8;
+    letter-spacing: .01em;
+  }
+
+  .chips { display: flex; gap: 10px; margin-top: 32px; }
+  .chip {
+    font-size: 14px;
+    padding: 9px 15px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.13);
+    background: rgba(255,255,255,.055);
+    color: #cbd5e1;
+    letter-spacing: .02em;
+  }
+  .chip b { color: #e2e8f0; font-weight: 600; }
+
+  .repo {
+    margin-top: 38px;
+    font-family: Consolas, "Cascadia Mono", monospace;
+    font-size: 15px;
+    color: #7d8ca3;
+  }
+  .repo-en {
+    margin-top: 9px;
+    font-size: 13px;
+    letter-spacing: .07em;
+    color: #4c5a70;
+  }
+
+  /* 右侧：面板还原 */
+  .panel-wrap { position: relative; }
+  .panel-wrap::before {
+    content: "";
+    position: absolute; inset: -34px -30px;
+    background: radial-gradient(closest-side, rgba(59,130,246,.28), transparent 78%);
+    filter: blur(6px);
+  }
+  .panel {
+    position: relative;
+    width: 392px;
+    padding: 18px 20px 20px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.13);
+    background: linear-gradient(165deg, rgba(255,255,255,.085), rgba(255,255,255,.028));
+    box-shadow: 0 26px 60px rgba(2,8,23,.6), inset 0 1px 0 rgba(255,255,255,.10);
+    backdrop-filter: blur(10px);
+  }
+
+  .panel-head {
+    display: flex; align-items: center; gap: 9px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 4px rgba(34,197,94,.16);
+  }
+  .panel-title { font-size: 14px; font-weight: 600; color: #e2e8f0; letter-spacing: .02em; }
+  .panel-min { margin-left: auto; color: #64748b; font-size: 14px; }
+
+  .rows { padding: 14px 0 4px; }
+  .row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 7px 0;
+    font-size: 14px;
+  }
+  .row .k { color: #7c8ba3; letter-spacing: .06em; }
+  .row .v { color: #e2e8f0; font-weight: 600; }
+  .row .v.run { color: #4ade80; }
+  .row .v.mono { font-family: Consolas, monospace; }
+
+  .bar {
+    height: 7px; border-radius: 999px; margin: 14px 0 6px;
+    background: rgba(255,255,255,.08);
+    overflow: hidden;
+  }
+  .bar span {
+    display: block; height: 100%; width: 52%; border-radius: 999px;
+    background: linear-gradient(90deg, #3b82f6, #22d3ee);
+  }
+
+  .foot {
+    margin-top: 12px;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12.5px;
+    color: #93a4bd;
+  }
+  .play {
+    width: 20px; height: 20px; border-radius: 6px;
+    background: rgba(59,130,246,.22);
+    border: 1px solid rgba(96,165,250,.4);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .play::after {
+    content: ""; display: block;
+    border-left: 7px solid #93c5fd;
+    border-top: 4.5px solid transparent;
+    border-bottom: 4.5px solid transparent;
+    margin-left: 2px;
+  }
+
+</style>
+</head>
+<body>
+  <div class="glow-a"></div>
+  <div class="glow-b"></div>
+  <div class="grid"></div>
+
+  <div class="stage">
+    <div class="left">
+      <div class="brand">
+        <div class="logo">雨</div>
+        <div class="brand-text">雨课堂 · 视频自动连播</div>
+      </div>
+
+      <h1>
+        雨课堂视频<br>
+        <span class="line2">自动连播助手</span>
+      </h1>
+
+      <div class="sub">自动打开未完成视频，播完自动切下一节</div>
+
+      <div class="chips">
+        <div class="chip"><b>Edge</b> MV3 扩展</div>
+        <div class="chip">本地运行 · 不联网</div>
+        <div class="chip">MIT License</div>
+      </div>
+
+      <div class="repo">github.com/Alan-88454/yuketang-video-autoplay</div>
+      <div class="repo-en">YUKETANG VIDEO AUTO-PLAY · EDGE MV3 EXTENSION</div>
+    </div>
+
+    <div class="panel-wrap">
+      <div class="panel">
+        <div class="panel-head">
+          <span class="dot"></span>
+          <span class="panel-title">雨课堂自动连播 v1.0.7</span>
+          <span class="panel-min">—</span>
+        </div>
+
+        <div class="rows">
+          <div class="row"><span class="k">状态</span><span class="v run">运行中</span></div>
+          <div class="row"><span class="k">当前</span><span class="v">视频 · 第 12 节</span></div>
+          <div class="row"><span class="k">进度</span><span class="v mono">12 / 48</span></div>
+          <div class="row"><span class="k">倍速</span><span class="v mono">2.0x</span></div>
+          <div class="row"><span class="k">静音</span><span class="v">已静音</span></div>
+        </div>
+
+        <div class="bar"><span></span></div>
+
+        <div class="foot">
+          <span class="play"></span>
+          正在播放 · 播完自动切下一节
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

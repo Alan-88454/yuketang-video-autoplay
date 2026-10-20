@@ -205,6 +205,8 @@ README.md              中文说明（本文件）
 README.en.md           英文说明
 CHANGELOG.md           版本历史（中英对照）
 LICENSE                MIT 许可证
+assets/social-preview.png   仓库社交预览图（1280×640）
+assets/social-preview.html  预览图设计稿，用浏览器打开即可重新渲染
 ```
 
 打包分发包：
