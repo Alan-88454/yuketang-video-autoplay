@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "雨课堂视频自动连播助手",
+  "version": "1.0.7",
+  "description": "自动播放雨课堂课程视频，一节播完自动切换下一节；跳过图文、讨论、作业与未开放章节。本地扩展，不联网、不读取账号密码。",
+  "minimum_chrome_version": "111",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["*://*.yuketang.cn/*"],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.yuketang.cn/*"],
+      "js": ["src/main-world.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "world": "MAIN"
+    },
+    {
+      "matches": ["*://*.yuketang.cn/*"],
+      "js": ["src/content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "action": {
+    "default_title": "雨课堂视频自动连播助手"
+  }
+}

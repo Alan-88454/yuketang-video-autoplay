@@ -1,0 +1,10 @@
+# packaged output (regenerate with build.ps1)
+dist/
+*.zip
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
