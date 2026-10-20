@@ -203,6 +203,7 @@ src/background.js      Service Worker：课程页与视频页的信号转发、�
 build.ps1              把上面这些文件打成一个可分发的 zip
 README.md              中文说明（本文件）
 README.en.md           英文说明
+CHANGELOG.md           版本历史（中英对照）
 LICENSE                MIT 许可证
 ```
 
@@ -229,3 +230,7 @@ pwsh -File .\build.ps1
 
 自担风险：这是一个学习/效率工具，用它绕过课程要求可能违反你所在课程的规则，
 请自行确认并遵守。是否使用 2x 播放同样以课程规则为准。
+
+## 更新日志
+
+见 [CHANGELOG.md](CHANGELOG.md)。

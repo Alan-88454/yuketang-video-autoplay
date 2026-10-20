@@ -226,6 +226,7 @@ src/background.js      service worker: signal relay between course and video pag
 build.ps1              packages the files above into a distributable zip
 README.md              Chinese documentation
 README.en.md           English documentation (this file)
+CHANGELOG.md           version history (Chinese + English)
 LICENSE                MIT license
 ```
 
@@ -253,3 +254,7 @@ folder into Edge via **Load unpacked**.
 Use at your own risk: this is a study/productivity tool, and using it to bypass course requirements may
 violate the rules of your course. Please check and follow them. Whether 2x playback counts as
 “fast-forwarding” is likewise governed by your course rules.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).
